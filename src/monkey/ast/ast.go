@@ -58,3 +58,16 @@ func (i *Identifier) expressionNode() {}
 func (i *Identifier) TokenLiteral() string {
 	return i.Token.Literal
 }
+
+// ReturnStatement is an AST node representing a return statement
+type ReturnStatement struct {
+	Token       token.Token
+	ReturnValue Expression
+}
+
+func (rs *ReturnStatement) statementNode() {}
+
+// TokenLiteral for ReturnStatement token
+func (rs *ReturnStatement) TokenLiteral() string {
+	return rs.Token.Literal
+}

@@ -5,6 +5,14 @@ import (
 	"monkey/object"
 )
 
+var (
+	// TRUE is a constant object.Boolean used for true
+	TRUE = &object.Boolean{Value: true}
+
+	// FALSE is a constrant object.Boolean used for false
+	FALSE = &object.Boolean{Value: false}
+)
+
 // Eval evaluates the AST node provided to it
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
@@ -19,6 +27,9 @@ func Eval(node ast.Node) object.Object {
 	// Expressions
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
+
+	case *ast.Boolean:
+		return nativeBoolToBooleanObject(node.Value)
 	}
 
 	return nil
@@ -32,4 +43,12 @@ func evalStatements(stmts []ast.Statement) object.Object {
 	}
 
 	return result
+}
+
+func nativeBoolToBooleanObject(input bool) *object.Boolean {
+	if input {
+		return TRUE
+	}
+
+	return FALSE
 }

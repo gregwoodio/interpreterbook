@@ -6,9 +6,10 @@ import "fmt"
 type ObjectType string
 
 const (
-	INTEGER_OBJ = "INTEGER"
-	BOOLEAN_OBJ = "BOOLEAN"
-	NULL_OBJ    = "NULL"
+	INTEGER_OBJ      = "INTEGER"
+	BOOLEAN_OBJ      = "BOOLEAN"
+	NULL_OBJ         = "NULL"
+	RETURN_VALUE_OBJ = "RETURN_VALUE"
 )
 
 // Object representation used in the evaluator
@@ -58,4 +59,19 @@ func (n *Null) Inspect() string {
 // Type for Null
 func (n *Null) Type() ObjectType {
 	return NULL_OBJ
+}
+
+// ReturnValue object type
+type ReturnValue struct {
+	Value Object
+}
+
+// Type for ReturnValue
+func (rv *ReturnValue) Type() ObjectType {
+	return RETURN_VALUE_OBJ
+}
+
+// Inspect for ReturnValue
+func (rv *ReturnValue) Inspect() string {
+	return rv.Value.Inspect()
 }

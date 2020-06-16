@@ -10,6 +10,7 @@ const (
 	BOOLEAN_OBJ      = "BOOLEAN"
 	NULL_OBJ         = "NULL"
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
+	ERROR_OBJ        = "ERROR"
 )
 
 // Object representation used in the evaluator
@@ -74,4 +75,19 @@ func (rv *ReturnValue) Type() ObjectType {
 // Inspect for ReturnValue
 func (rv *ReturnValue) Inspect() string {
 	return rv.Value.Inspect()
+}
+
+// Error type
+type Error struct {
+	Message string
+}
+
+// Type for Error
+func (e *Error) Type() ObjectType {
+	return ERROR_OBJ
+}
+
+// Inspect for Error
+func (e *Error) Inspect() string {
+	return "ERROR: " + e.Message
 }

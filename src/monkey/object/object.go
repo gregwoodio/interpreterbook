@@ -18,6 +18,7 @@ const (
 	ERROR_OBJ        = "ERROR"
 	FUNCTION_OBJ     = "FUNCTION"
 	STRING_OBJ       = "STRING"
+	BUILTIN_OBJ      = "BUILTIN"
 )
 
 // Object representation used in the evaluator
@@ -141,4 +142,22 @@ func (s *String) Type() ObjectType {
 // Inspect for String
 func (s *String) Inspect() string {
 	return s.Value
+}
+
+// BuiltinFunction is the underlying Go function called
+type BuiltinFunction func(args ...Object) Object
+
+// Builtin functions wrapper
+type Builtin struct {
+	Fn BuiltinFunction
+}
+
+// Type for Builtin
+func (b *Builtin) Type() ObjectType {
+	return BUILTIN_OBJ
+}
+
+// Inspect for Builtin
+func (b *Builtin) Inspect() string {
+	return "builtin function"
 }

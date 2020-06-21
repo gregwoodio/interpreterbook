@@ -17,6 +17,7 @@ const (
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
 	ERROR_OBJ        = "ERROR"
 	FUNCTION_OBJ     = "FUNCTION"
+	STRING_OBJ       = "STRING"
 )
 
 // Object representation used in the evaluator
@@ -125,4 +126,19 @@ func (f *Function) Inspect() string {
 	out.WriteString("\n}")
 
 	return out.String()
+}
+
+// String Object type
+type String struct {
+	Value string
+}
+
+// Type for String
+func (s *String) Type() ObjectType {
+	return STRING_OBJ
+}
+
+// Inspect for String
+func (s *String) Inspect() string {
+	return s.Value
 }

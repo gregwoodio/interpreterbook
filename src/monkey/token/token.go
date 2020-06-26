@@ -42,6 +42,8 @@ const (
 	EQ     = "=="
 	NOT_EQ = "!="
 
+	COLON = ":"
+
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
